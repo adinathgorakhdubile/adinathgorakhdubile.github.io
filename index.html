@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adinath Dubile | Penetration Tester & VAPT Engineer</title>
-  <meta name="description" content="Offensive security portfolio of Adinath Dubile – Penetration Tester, VAPT Engineer, and Red Team enthusiast specializing in web, API and network security." />
-  <meta name="keywords" content="Adinath Dubile, penetration tester, VAPT, red team, cybersecurity, web security, API security" />
   <link rel="stylesheet" href="style.css" />
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -17,6 +15,8 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <meta name="description" content="Offensive security portfolio of Adinath Dubile – Penetration Tester, VAPT Engineer, and Red Team enthusiast specializing in web, API and network security." />
+  <meta name="keywords" content="Adinath Dubile, penetration tester, VAPT, red team, cybersecurity, web security, API security" />
 </head>
 <body>
   <!-- ====== NAVBAR ====== -->
@@ -34,8 +34,10 @@
           <li><a href="#projects">Projects</a></li>
           <li><a href="#achievements">Achievements</a></li>
           <li><a href="#services">Services</a></li>
-          <li><a href="#resume">Resume</a></li>
+          <li><a href="#tools">Tools</a></li>
+          <li><a href="#certifications">Certifications</a></li>
           <li><a href="#blog">Blog</a></li>
+          <li><a href="#resume">Resume</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -63,15 +65,14 @@
           <span><i class="fa-solid fa-phone"></i> +91 7219777385</span>
         </div>
         <div class="social-links">
-          <a href="https://github.com/adinathgorakhdubile" target="_blank" rel="noreferrer">
-           <i class="fa-brands fa-github"></i>
-          </a>
-
-          <a href="#" target="_blank" rel="noreferrer">
+          <a href="https://github.com/adinathgorakhdubile" target="_blank" rel="noreferrer" title="GitHub">
             <i class="fa-brands fa-github"></i>
           </a>
-          <a href="#contact">
-            <i class="fa-solid fa-paper-plane"></i>
+          <a href="https://www.linkedin.com/in/adinath-dubile" target="_blank" rel="noreferrer" title="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <a href="mailto:adinathgorakhdubile@gmail.com" title="Email Me">
+            <i class="fa-solid fa-envelope"></i>
           </a>
         </div>
       </div>
@@ -79,11 +80,12 @@
       <div class="hero-card">
         <div class="hero-card-inner">
           <div class="hero-avatar">
-            <i class="fa-solid fa-user-ninja"></i>
+            <!-- Make sure offsec_logo.png exists in the repo root -->
+            <img src="offsec_logo.png" alt="Offensive Security Logo" class="avatar-img" />
           </div>
           <h2>Offensive Security</h2>
           <p>
-            Web & API Pentesting, Network VAPT, Red Team fundamentals, and Python-based security automation.
+            Web & API Pentesting, Network VAPT, Red Team fundamentals, and Python-based security automation focused on real-world attack simulation.
           </p>
           <ul class="hero-tags">
             <li>#BurpSuite</li>
@@ -286,7 +288,7 @@
         <div class="badge-card">
           <h3><i class="fa-solid fa-trophy"></i> TryHackMe Progress</h3>
           <p>Completed multiple rooms focusing on web exploitation, networking, and red team basics.</p>
-          <p class="muted">You can later embed screenshots or profile links here.</p>
+          <p class="muted">Later you can embed your TryHackMe profile & badge screenshots here.</p>
         </div>
         <div class="badge-card">
           <h3><i class="fa-solid fa-medal"></i> Web & API Security Labs</h3>
@@ -312,7 +314,7 @@
         <div class="service-card">
           <h3><i class="fa-solid fa-shield-virus"></i> Web Application VAPT</h3>
           <p>
-            Manual + automated web application penetration testing with clear reporting, prioritization, and remediation
+            Manual and automated web application penetration testing with clear reporting, prioritization, and remediation
             guidance.
           </p>
         </div>
@@ -411,15 +413,19 @@
 
   <!-- ====== RESUME (DOWNLOAD) ====== -->
   <section id="resume" class="section">
-  ...
-  <div class="resume-cta">
-    <!-- Replace the # with your actual resume file link -->
-    <a href="Adinath_Premium_Resume.pdf" class="btn" download="Adinath_Dubile_Resume.pdf">
-  <i class="fa-solid fa-file-arrow-down"></i> Download Resume (PDF)
-</a>
-  </div>
-  ...
-</section>
+    <div class="container">
+      <div class="section-header">
+        <h2>Resume</h2>
+        <p>Download my latest resume for detailed information.</p>
+      </div>
+      <div class="resume-cta">
+        <!-- Ensure this file exists in repo root -->
+        <a href="Adinath_Premium_Resume.pdf" class="btn" download="Adinath_Dubile_Resume.pdf">
+          <i class="fa-solid fa-file-arrow-down"></i> Download Resume (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- ====== CONTACT ====== -->
   <section id="contact" class="section section-alt">
@@ -432,7 +438,7 @@
         <div>
           <p>
             If you’d like to discuss a role, project, or collaboration in offensive security, feel free to reach out
-            directly using the details below.
+            using the form or contact details below.
           </p>
           <ul class="contact-list">
             <li><i class="fa-solid fa-envelope"></i> adinathgorakhdubile@gmail.com</li>
@@ -441,23 +447,24 @@
           </ul>
         </div>
         <div>
-          <form class="contact-form" onsubmit="return false;">
+          <!-- Replace YOUR_FORM_ID with your actual Formspree ID -->
+          <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
             <div class="field">
               <label for="name">Name</label>
-              <input id="name" type="text" placeholder="Your name" />
+              <input id="name" type="text" name="name" required placeholder="Your name" />
             </div>
             <div class="field">
               <label for="email">Email</label>
-              <input id="email" type="email" placeholder="you@example.com" />
+              <input id="email" type="email" name="_replyto" required placeholder="you@example.com" />
             </div>
             <div class="field">
               <label for="message">Message</label>
-              <textarea id="message" rows="4" placeholder="Tell me about your project or opportunity..."></textarea>
+              <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project or opportunity..."></textarea>
             </div>
             <button class="btn" type="submit">
-              <i class="fa-solid fa-paper-plane"></i> Send (static demo)
+              <i class="fa-solid fa-paper-plane"></i> Send Message
             </button>
-            <p class="form-note">*To make this form work, connect it to a backend or service like Formspree/Netlify.</p>
+            <p class="form-note">I'll get back to you as soon as possible.</p>
           </form>
         </div>
       </div>
@@ -473,7 +480,6 @@
   </footer>
 
   <script>
-    // Set current year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>

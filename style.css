@@ -264,9 +264,11 @@ body {
   margin-bottom: 14px;
 }
 
-.hero-avatar i {
-  font-size: 1.8rem;
-  color: #4cc9f0;
+.avatar-img {
+  width: 60px;
+  height: auto;
+  border-radius: 6px;
+  object-fit: contain;
 }
 
 .hero-card-inner h2 {
@@ -656,17 +658,14 @@ body {
 
 @media (max-width: 600px) {
   .nav-list {
-    display: none; /* for now, simple mobile: nav hidden – can add burger later */
+    display: none; /* simple mobile: hide nav (can add burger later) */
   }
 
   .hero h1 {
     font-size: 2rem;
   }
 
-  .section {
-    padding: 60px 0;
-  }
-
+  .section,
   .section-alt {
     padding: 60px 0;
   }
