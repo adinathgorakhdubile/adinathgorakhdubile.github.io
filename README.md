@@ -1,2 +1,0 @@
-# adinathgorakhdubile.github.io
-Portfolio
