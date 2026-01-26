@@ -106,9 +106,12 @@ colors: {
 ### Content
 
 - **Personal Info**: Update name, title, and contact details in respective component files
+  - Search for `adinath@example.com` and replace with actual email address
+  - Update in: `Header.jsx`, `Contact.jsx`, `Footer.jsx`
 - **Projects**: Edit `src/components/Projects.jsx` to add/modify projects
 - **Skills**: Customize skills in `src/components/Skills.jsx`
 - **Resume**: Replace `public/Adinath_Dubile_Resume_2025.pdf` with your resume
+- **Form Submission**: Replace the simulated form submission in `Contact.jsx` with actual backend API (FormSpree, EmailJS, etc.)
 
 ## 📦 Deployment
 
