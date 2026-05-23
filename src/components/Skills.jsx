@@ -1,37 +1,49 @@
 import { motion } from 'framer-motion';
-import { Shield, Code, Server, Wrench, BookOpen } from 'lucide-react';
+import { Shield, Search, Radar, Lock, FlaskConical, ClipboardCheck, Scale } from 'lucide-react';
 
 const Skills = () => {
   const skillCategories = [
     {
       icon: Shield,
+      title: 'Security Operations (SOC)',
+      color: 'text-cyber-blue',
+      skills: ['Security event review', 'Alert triage support', 'Log analysis fundamentals', 'MITRE ATT&CK mapping'],
+    },
+    {
+      icon: Search,
+      title: 'Incident Response',
+      color: 'text-cyber-cyan',
+      skills: ['Incident triage workflows', 'Initial containment support', 'Evidence handling awareness', 'Post-incident reporting'],
+    },
+    {
+      icon: Radar,
+      title: 'Threat Intelligence',
+      color: 'text-cyber-green',
+      skills: ['OSINT-based reconnaissance', 'Threat pattern tracking', 'Attack surface profiling', 'IOC context interpretation'],
+    },
+    {
+      icon: Lock,
       title: 'Penetration Testing',
       color: 'text-cyber-blue',
-      skills: ['Burp Suite', 'OWASP ZAP', 'Metasploit', 'Nmap', 'Wireshark', 'SQLMap', 'Nikto', 'Gobuster'],
+      skills: ['Burp Suite', 'OWASP ZAP', 'SQLMap', 'Nmap', 'Nessus', 'Metasploit'],
     },
     {
-      icon: Code,
-      title: 'Programming',
+      icon: FlaskConical,
+      title: 'DFIR / Forensics',
       color: 'text-cyber-cyan',
-      skills: ['Python', 'Bash', 'JavaScript', 'PowerShell', 'Go'],
+      skills: ['Digital evidence fundamentals', 'Forensic documentation', 'Chain-of-custody awareness', 'Cyber crime case context'],
     },
     {
-      icon: Server,
-      title: 'Security Labs',
+      icon: ClipboardCheck,
+      title: 'Governance, Risk, and Compliance',
       color: 'text-cyber-green',
-      skills: ['DVWA', 'Juice Shop', 'bWAPP', 'TryHackMe', 'HackTheBox', 'OWASP WebGoat'],
+      skills: ['ISO 27001 basics', 'NIST framework familiarity', 'GDPR awareness', 'Risk-oriented security communication'],
     },
     {
-      icon: Wrench,
-      title: 'Security Tools',
+      icon: Scale,
+      title: 'Cyber Law',
       color: 'text-cyber-blue',
-      skills: ['Nessus', 'OpenVAS', 'John the Ripper', 'Hashcat', 'Hydra', 'Aircrack-ng'],
-    },
-    {
-      icon: BookOpen,
-      title: 'Frameworks & Methodologies',
-      color: 'text-cyber-cyan',
-      skills: ['OWASP Top 10', 'MITRE ATT&CK', 'PTES', 'OSSTMM', 'NIST CSF'],
+      skills: ['Cyber & computer forensics law studies', 'Legal-admissibility awareness', 'Privacy-aware security practice', 'Responsible disclosure mindset'],
     },
   ];
 
@@ -46,7 +58,7 @@ const Skills = () => {
         >
           <h2 className="section-title text-center mb-4">Skills & Technologies</h2>
           <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-            Comprehensive toolkit and expertise in offensive security and penetration testing
+            Role-based capabilities aligned for analyst, infosec, pentest, DFIR, and cyber-law pathways.
           </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -81,7 +93,7 @@ const Skills = () => {
             ))}
           </div>
 
-          {/* Additional Certifications Section */}
+          {/* Applied Practice Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -89,23 +101,23 @@ const Skills = () => {
             viewport={{ once: true }}
             className="mt-12 card max-w-4xl mx-auto"
           >
-            <h3 className="text-2xl font-bold text-cyber-green mb-4 text-center">Experience & Labs</h3>
+            <h3 className="text-2xl font-bold text-cyber-green mb-4 text-center">Applied Practice</h3>
             <div className="grid sm:grid-cols-2 gap-4 text-center">
               <div className="p-4 bg-gray-900/50 rounded-lg border border-gray-700">
-                <div className="text-3xl font-bold text-cyber-blue mb-2">100+</div>
-                <p className="text-gray-400">Completed Lab Challenges</p>
+                <div className="text-3xl font-bold text-cyber-blue mb-2">30+</div>
+                <p className="text-gray-400">Practical Security Labs</p>
               </div>
               <div className="p-4 bg-gray-900/50 rounded-lg border border-gray-700">
-                <div className="text-3xl font-bold text-cyber-cyan mb-2">DVWA</div>
-                <p className="text-gray-400">Damn Vulnerable Web App</p>
+                <div className="text-3xl font-bold text-cyber-cyan mb-2">Web</div>
+                <p className="text-gray-400">DVWA, Juice Shop, bWAPP</p>
               </div>
               <div className="p-4 bg-gray-900/50 rounded-lg border border-gray-700">
-                <div className="text-3xl font-bold text-cyber-green mb-2">OWASP</div>
-                <p className="text-gray-400">Juice Shop & bWAPP</p>
+                <div className="text-3xl font-bold text-cyber-green mb-2">API</div>
+                <p className="text-gray-400">BOLA, IDOR, rate-limit assessments</p>
               </div>
               <div className="p-4 bg-gray-900/50 rounded-lg border border-gray-700">
-                <div className="text-3xl font-bold text-cyber-blue mb-2">THM</div>
-                <p className="text-gray-400">TryHackMe Rooms</p>
+                <div className="text-3xl font-bold text-cyber-blue mb-2">IR</div>
+                <p className="text-gray-400">Investigation and reporting workflow drills</p>
               </div>
             </div>
           </motion.div>

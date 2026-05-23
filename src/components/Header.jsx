@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Github, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Header = () => {
@@ -18,7 +18,11 @@ const Header = () => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Certifications', href: '#certifications' },
+    { name: 'Publications', href: '#publications' },
+    { name: 'Resume', href: '#resume' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -44,12 +48,12 @@ const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-5">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-gray-300 hover:text-cyber-blue transition-colors duration-300"
+                className="text-sm text-gray-300 hover:text-cyber-blue transition-colors duration-300"
               >
                 {link.name}
               </a>
@@ -57,7 +61,7 @@ const Header = () => {
           </div>
 
           {/* Social Links */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-4">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
@@ -75,7 +79,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-gray-300 hover:text-cyber-blue transition-colors"
+            className="lg:hidden text-gray-300 hover:text-cyber-blue transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -88,7 +92,7 @@ const Header = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-4 pb-4 border-t border-gray-700 pt-4"
+            className="lg:hidden mt-4 pb-4 border-t border-gray-700 pt-4"
           >
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
