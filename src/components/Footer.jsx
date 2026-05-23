@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Github, Mail, Heart } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -12,7 +12,11 @@ const Footer = () => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Certifications', href: '#certifications' },
+    { name: 'Publications', href: '#publications' },
+    { name: 'Resume', href: '#resume' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -24,7 +28,8 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-bold glow-text mb-4">Adinath Dubile</h3>
             <p className="text-gray-400 mb-4">
-              Penetration Tester & VAPT Engineer specializing in offensive security and vulnerability assessment.
+              Multi-track cybersecurity profile spanning analyst workflows, penetration testing, DFIR-focused
+              studies, and security governance awareness.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -65,11 +70,20 @@ const Footer = () => {
             <ul className="space-y-2">
               <li>
                 <a
-                  href="/Adinath_Dubile_Resume_2025.pdf"
+                  href="/ResumeSA.pdf"
                   download
                   className="text-gray-400 hover:text-cyber-green transition-colors duration-300"
                 >
-                  Download Resume
+                  Analyst Resume
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/ResumeO.pdf"
+                  download
+                  className="text-gray-400 hover:text-cyber-green transition-colors duration-300"
+                >
+                  Offensive Resume
                 </a>
               </li>
               <li>

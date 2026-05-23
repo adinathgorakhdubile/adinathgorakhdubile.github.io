@@ -1,6 +1,6 @@
-# Adinath Dubile - Offensive Security Portfolio
+# Adinath Dubile - Cybersecurity Portfolio
 
-Modern, professional portfolio website showcasing penetration testing expertise, VAPT services, and offensive security projects.
+Modern, professional portfolio website showcasing multi-track cybersecurity capabilities across analyst, infosec, pentest, DFIR, and cyber-law aligned domains.
 
 ## 🚀 Live Site
 
@@ -142,4 +142,3 @@ The site automatically deploys to GitHub Pages when you push to the `main` branc
 ---
 
 Built with ❤️ using React & Tailwind CSS
-

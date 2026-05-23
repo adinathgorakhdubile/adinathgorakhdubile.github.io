@@ -94,7 +94,7 @@ const Contact = () => {
         >
           <h2 className="section-title text-center mb-4">Get In Touch</h2>
           <p className="text-center text-gray-400 mb-12">
-            Have a project in mind or want to discuss security services? Let's connect!
+            Open to opportunities in cybersecurity analyst, information security, penetration testing, DFIR, and related security law tracks.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -131,8 +131,8 @@ const Contact = () => {
               <div className="card bg-gradient-to-br from-cyber-blue/10 to-cyber-cyan/10 border-cyber-blue/30">
                 <h4 className="text-lg font-semibold text-cyber-blue mb-2">Availability</h4>
                 <p className="text-gray-300">
-                  I'm currently available for freelance penetration testing projects and security consulting. 
-                  Feel free to reach out for collaborations or security assessments.
+                  Available for full-time and internship roles across SOC, information security analysis,
+                  penetration testing, and forensic/legal-aligned cybersecurity functions.
                 </p>
               </div>
             </motion.div>

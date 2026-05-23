@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion';
-import { Shield, Code, Network, Bug, Terminal, Zap } from 'lucide-react';
+import { Shield, Code, Scale, Search, Network, BookOpen, Lock } from 'lucide-react';
 
 const About = () => {
   const skills = [
-    { icon: Shield, name: 'Web Application Penetration Testing', color: 'text-cyber-blue' },
-    { icon: Network, name: 'API Security Assessment', color: 'text-cyber-cyan' },
-    { icon: Network, name: 'Network Penetration Testing', color: 'text-cyber-blue' },
-    { icon: Bug, name: 'Vulnerability Assessment & Management', color: 'text-cyber-green' },
-    { icon: Terminal, name: 'Red Team Enumeration', color: 'text-cyber-cyan' },
-    { icon: Code, name: 'Python Automation & Scripting', color: 'text-cyber-blue' },
-    { icon: Zap, name: 'Security Tool Development', color: 'text-cyber-green' },
+    { icon: Shield, name: 'Security Monitoring & Analysis', color: 'text-cyber-blue' },
+    { icon: Search, name: 'Incident Investigation Support', color: 'text-cyber-cyan' },
+    { icon: Network, name: 'Web, API, and Network Security Testing', color: 'text-cyber-blue' },
+    { icon: Lock, name: 'Vulnerability Assessment & Management', color: 'text-cyber-green' },
+    { icon: Code, name: 'Python/Bash Security Automation', color: 'text-cyber-cyan' },
+    { icon: BookOpen, name: 'Compliance Awareness (ISO 27001, NIST, GDPR)', color: 'text-cyber-blue' },
+    { icon: Scale, name: 'Cyber Forensics and Related Law Studies', color: 'text-cyber-green' },
   ];
 
   return (
@@ -34,15 +34,15 @@ const About = () => {
             >
               <h3 className="text-2xl font-bold text-cyber-blue mb-4">Professional Background</h3>
               <p className="text-gray-300 leading-relaxed">
-                As a dedicated Penetration Tester and VAPT Engineer, I specialize in identifying and 
-                exploiting security vulnerabilities to help organizations strengthen their security posture. 
-                With extensive experience in offensive security, I conduct comprehensive security assessments 
-                across web applications, APIs, and network infrastructure.
+                I am a cybersecurity practitioner with hands-on work across security analysis, penetration
+                testing, and forensic-focused academic training. My profile combines practical lab-based
+                validation of web, API, and network weaknesses with structured security frameworks and
+                compliance-aligned thinking.
               </p>
               <p className="text-gray-300 leading-relaxed mt-4">
-                My approach combines manual testing techniques with automated tools to provide thorough 
-                security evaluations. I stay current with the latest attack vectors and security trends 
-                to deliver cutting-edge penetration testing services.
+                I prioritize ethical practice, privacy, and responsible disclosure. All assessments and
+                validation activities are performed in authorized environments to support stronger security
+                posture and clear, actionable risk reduction.
               </p>
             </motion.div>
 
@@ -55,24 +55,24 @@ const About = () => {
             >
               <h3 className="text-2xl font-bold text-cyber-cyan mb-4">Expertise Areas</h3>
               <p className="text-gray-300 leading-relaxed mb-4">
-                I bring a comprehensive skill set to every engagement:
+                I bring cross-functional capability for multiple cybersecurity tracks:
               </p>
               <ul className="space-y-2 text-gray-300">
                 <li className="flex items-start">
                   <span className="text-cyber-blue mr-2">▸</span>
-                  <span>Deep understanding of OWASP Top 10 vulnerabilities</span>
+                  <span>SOC-aligned detection awareness and incident triage foundations</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-cyber-blue mr-2">▸</span>
-                  <span>Proficient in security frameworks and methodologies</span>
+                  <span>Threat-informed security testing using OWASP and MITRE-aligned approaches</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-cyber-blue mr-2">▸</span>
-                  <span>Experience with various penetration testing tools</span>
+                  <span>Digital forensics and related legal studies for evidence-aware security work</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-cyber-blue mr-2">▸</span>
-                  <span>Custom exploit and tool development capabilities</span>
+                  <span>Risk/compliance awareness mapped to ISO 27001, NIST, and GDPR fundamentals</span>
                 </li>
               </ul>
             </motion.div>

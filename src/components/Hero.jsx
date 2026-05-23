@@ -43,7 +43,7 @@ const Hero = () => {
             transition={{ delay: 0.3, duration: 0.5 }}
             className="text-2xl md:text-3xl font-semibold text-cyber-blue mb-4"
           >
-            Penetration Tester & VAPT Engineer
+            Cybersecurity Analyst | Information Security | Penetration Testing | DFIR & Cyber Law
           </motion.h2>
 
           <motion.p
@@ -52,7 +52,7 @@ const Hero = () => {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="text-xl text-cyber-cyan mb-2"
           >
-            Offensive Security Practitioner
+            Multi-Disciplinary Cybersecurity Professional
           </motion.p>
 
           {/* Tagline */}
@@ -62,7 +62,8 @@ const Hero = () => {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto"
           >
-            Red team enthusiast specializing in web, API, and network penetration testing
+            Supporting organizations across SOC operations, incident response, threat-informed testing,
+            digital forensics, compliance alignment, and authorized security assessments.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -76,7 +77,7 @@ const Hero = () => {
               href="#projects"
               className="cyber-button inline-flex items-center gap-2 group"
             >
-              View Projects
+              View Case Studies
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a
@@ -86,12 +87,11 @@ const Hero = () => {
               Contact Me
             </a>
             <a
-              href="/Adinath_Dubile_Resume_2025.pdf"
-              download
+              href="#resume"
               className="cyber-button-outline inline-flex items-center gap-2"
             >
               <Download size={20} />
-              Download Resume
+              Resume Options
             </a>
           </motion.div>
 
