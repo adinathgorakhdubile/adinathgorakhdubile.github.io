@@ -1,6 +1,6 @@
 # Adinath Dubile - Cybersecurity Portfolio
 
-Modern, professional portfolio website showcasing cybersecurity analyst, information security, penetration testing, DFIR, and cyber law-related capabilities.
+Modern, professional portfolio website showcasing multi-track cybersecurity capabilities across analyst, infosec, pentest, DFIR, and cyber-law aligned domains.
 
 ## 🚀 Live Site
 
@@ -35,19 +35,13 @@ Visit: [https://adinathgorakhdubile.github.io/](https://adinathgorakhdubile.gith
 │   │   ├── Hero.jsx     # Hero section
 │   │   ├── About.jsx    # About section
 │   │   ├── Skills.jsx   # Skills & technologies
-│   │   ├── Projects.jsx # Projects and case studies
-│   │   ├── Experience.jsx # Experience overview
-│   │   ├── Certifications.jsx # Certifications and training
-│   │   ├── Publications.jsx # Publications and talk topics
-│   │   ├── ResumeSection.jsx # Dual resume downloads
+│   │   ├── Projects.jsx # Featured projects
 │   │   ├── Contact.jsx  # Contact form
 │   │   └── Footer.jsx   # Footer
 │   ├── App.jsx          # Main app with error boundary
 │   ├── main.jsx         # Entry point
 │   └── index.css        # Global styles
 ├── public/              # Static assets
-│   ├── ResumeSA.pdf
-│   ├── ResumeO.pdf
 │   ├── Adinath_Dubile_Resume_2025.pdf
 │   └── images/
 ├── .github/workflows/   # CI/CD workflows
@@ -116,7 +110,7 @@ colors: {
   - Update in: `Header.jsx`, `Contact.jsx`, `Footer.jsx`
 - **Projects**: Edit `src/components/Projects.jsx` to add/modify projects
 - **Skills**: Customize skills in `src/components/Skills.jsx`
-- **Resumes**: Replace `public/ResumeSA.pdf` and `public/ResumeO.pdf` with tailored versions
+- **Resume**: Replace `public/Adinath_Dubile_Resume_2025.pdf` with your resume
 - **Form Submission**: Replace the simulated form submission in `Contact.jsx` with actual backend API (FormSpree, EmailJS, etc.)
 
 ## 📦 Deployment

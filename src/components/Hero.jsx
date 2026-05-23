@@ -4,6 +4,7 @@ import { Download, ArrowRight } from 'lucide-react';
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden">
+      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyber-blue/10 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-cyan/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
@@ -11,6 +12,7 @@ const Hero = () => {
 
       <div className="container mx-auto relative z-10">
         <div className="max-w-4xl mx-auto text-center">
+          {/* Avatar/Image Placeholder */}
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -24,6 +26,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
+          {/* Name */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -33,34 +36,37 @@ const Hero = () => {
             Adinath Dubile
           </motion.h1>
 
+          {/* Title */}
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.5 }}
             className="text-2xl md:text-3xl font-semibold text-cyber-blue mb-4"
           >
-            Cybersecurity Analyst | Information Security | Penetration Testing | DFIR
+            Cybersecurity Analyst | Information Security | Penetration Testing | DFIR & Cyber Law
           </motion.h2>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-lg md:text-xl text-gray-300 mb-3 max-w-3xl mx-auto"
+            className="text-xl text-cyber-cyan mb-2"
           >
-            Multi-disciplinary cybersecurity professional with hands-on experience in web/API/network security
-            testing, vulnerability assessment, reconnaissance automation, and incident-focused forensic studies.
+            Multi-Disciplinary Cybersecurity Professional
           </motion.p>
 
+          {/* Tagline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="text-base md:text-lg text-cyber-cyan mb-8 max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto"
           >
-            Focused on ethical practice, authorized testing, privacy protection, and responsible disclosure.
+            Supporting organizations across SOC operations, incident response, threat-informed testing,
+            digital forensics, compliance alignment, and authorized security assessments.
           </motion.p>
 
+          {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,20 +81,21 @@ const Hero = () => {
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a
+              href="#contact"
+              className="cyber-button-outline inline-flex items-center gap-2"
+            >
+              Contact Me
+            </a>
+            <a
               href="#resume"
               className="cyber-button-outline inline-flex items-center gap-2"
             >
               <Download size={20} />
               Resume Options
             </a>
-            <a
-              href="#contact"
-              className="cyber-button-outline inline-flex items-center gap-2"
-            >
-              Contact Me
-            </a>
           </motion.div>
 
+          {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

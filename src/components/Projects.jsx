@@ -1,61 +1,65 @@
 import { motion } from 'framer-motion';
-import { Github, Shield, Lock, Search, Microscope } from 'lucide-react';
+import { Github, Shield, Lock, Search, ClipboardCheck } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
     {
-      title: 'ReconX (CLI Recon Automation Tool)',
-      description: 'Python/Bash-based modular reconnaissance tool designed to streamline initial information gathering and target enumeration in approved security assessment workflows.',
-      technologies: ['Python', 'Bash', 'OSINT', 'Automation'],
-      tags: ['Threat Intel', 'Pentest', 'SOC'],
+      title: 'VulnX',
+      description: 'Modular security scanner concept focused on improving vulnerability discovery workflows and structured risk reporting.',
+      technologies: ['Python', 'Automation', 'Security APIs'],
+      tags: ['SOC', 'Vulnerability Management', 'GRC'],
       highlights: [
-        'Automates repeatable reconnaissance steps for consistent assessments',
-        'Supports modular integration for scalable scanning workflows',
-        'Structured output suitable for analyst review and documentation',
+        'Built for repeatable and consistent assessment workflows',
+        'Supports modular expansion for different environment types',
+        'Designed to improve analyst-friendly findings output',
+        'Maps findings to practical remediation actions',
       ],
       icon: Shield,
       color: 'text-cyber-blue',
       github: 'https://github.com/adinathgorakhdubile',
     },
     {
-      title: 'Web Security Lab Assessments',
-      description: 'Hands-on testing in DVWA, Juice Shop, and bWAPP to practice secure vulnerability identification, validation, and reporting in controlled environments.',
-      technologies: ['Burp Suite', 'OWASP ZAP', 'SQLMap', 'DVWA', 'Juice Shop', 'bWAPP'],
-      tags: ['Pentest', 'IR', 'SOC'],
+      title: 'SecureAPI Tester',
+      description: 'API security testing workflow used in practice labs to evaluate authentication, authorization, and abuse-prevention controls.',
+      technologies: ['Python', 'REST APIs', 'OAuth', 'JWT'],
+      tags: ['Pentest', 'API Security', 'IR'],
       highlights: [
-        'Validated SQLi, XSS, CSRF, IDOR, and logic flaws in legal lab setups',
-        'Mapped findings to OWASP-style risk communication',
-        'Focused on remediation-oriented reporting language',
+        'Covers OWASP API risk categories including BOLA and IDOR',
+        'Tests token handling and access-control enforcement',
+        'Includes rate-limiting and abuse-path validation',
+        'Produces reports suitable for development and security teams',
       ],
       icon: Lock,
       color: 'text-cyber-cyan',
       github: '#',
     },
     {
-      title: 'API Security Case Practice',
-      description: 'Practical API testing exercises for identifying BOLA, IDOR, and rate-limit weaknesses with emphasis on authentication and authorization controls.',
-      technologies: ['REST APIs', 'OWASP API Security', 'JWT/OAuth Concepts', 'Python'],
-      tags: ['Pentest', 'SOC', 'GRC/Law'],
+      title: 'WebEnum Pro',
+      description: 'Reconnaissance automation toolkit for authorized target profiling and attack-surface visibility.',
+      technologies: ['Python', 'Bash', 'DNS', 'OSINT'],
+      tags: ['Threat Intelligence', 'Pentest', 'SOC'],
       highlights: [
-        'Performed endpoint-level checks for access control flaws',
-        'Documented findings with control-focused recommendations',
-        'Aligned observations with secure design and governance expectations',
+        'Automates initial enumeration to reduce manual effort',
+        'Supports domain and service discovery workflows',
+        'Generates structured outputs for analyst review',
+        'Used only in legal and approved testing environments',
       ],
       icon: Search,
       color: 'text-cyber-green',
       github: '#',
     },
     {
-      title: 'Forensics & Related Law Academic Track',
-      description: 'Ongoing postgraduate studies in Cyber & Computer Forensics and Related Law to strengthen incident investigation, evidence handling, and legal-aware security practice.',
-      technologies: ['DFIR Concepts', 'Evidence Handling', 'Cyber Law', 'Compliance'],
-      tags: ['DFIR', 'IR', 'GRC/Law'],
+      title: 'Forensic & Compliance Study Notes',
+      description: 'Case-driven documentation from cyber forensics and related law coursework, connecting technical findings to compliance and legal context.',
+      technologies: ['DFIR', 'Documentation', 'ISO 27001', 'NIST', 'GDPR'],
+      tags: ['DFIR', 'Cyber Law', 'GRC'],
       highlights: [
-        'Bridges technical and legal considerations for security work',
-        'Supports disciplined, defensible incident documentation',
-        'Reinforces privacy and responsible disclosure standards',
+        'Evidence-oriented note-taking and reporting structure',
+        'Focus on defensible documentation and privacy awareness',
+        'Connects technical incidents with policy/legal considerations',
+        'Improves communication between technical and governance roles',
       ],
-      icon: Microscope,
+      icon: ClipboardCheck,
       color: 'text-cyber-blue',
       github: '#',
     },
@@ -71,8 +75,8 @@ const Projects = () => {
           viewport={{ once: true }}
         >
           <h2 className="section-title text-center mb-4">Projects & Case Studies</h2>
-          <p className="text-center text-gray-400 mb-12 max-w-3xl mx-auto">
-            Professional security work samples mapped to analyst, pentest, DFIR, and governance/legal-aligned tracks.
+          <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+            Portfolio work mapped to analyst, pentest, DFIR, and governance-oriented security roles.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -85,8 +89,9 @@ const Projects = () => {
                 viewport={{ once: true }}
                 className="card group hover:scale-[1.02]"
               >
+                {/* Project Icon */}
                 <div className="flex items-center justify-between mb-4">
-                  <project.icon className={`${project.color}`} size={44} />
+                  <project.icon className={`${project.color}`} size={48} />
                   <div className="flex gap-3">
                     {project.github !== '#' && (
                       <a
@@ -102,20 +107,21 @@ const Projects = () => {
                   </div>
                 </div>
 
+                {/* Project Title */}
                 <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
+
+                {/* Project Description */}
                 <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 bg-cyber-blue/10 border border-cyber-blue/40 rounded-full text-xs font-semibold text-cyber-cyan"
-                    >
+                    <span key={tag} className="track-tag">
                       {tag}
                     </span>
                   ))}
                 </div>
 
+                {/* Technologies */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
                     <span
@@ -127,8 +133,9 @@ const Projects = () => {
                   ))}
                 </div>
 
+                {/* Highlights */}
                 <div className="space-y-2">
-                  <h4 className="text-sm font-semibold text-cyber-cyan">Highlights:</h4>
+                  <h4 className="text-sm font-semibold text-cyber-cyan">Case Study Highlights:</h4>
                   <ul className="space-y-1">
                     {project.highlights.map((highlight) => (
                       <li key={highlight} className="text-sm text-gray-400 flex items-start">
@@ -142,6 +149,7 @@ const Projects = () => {
             ))}
           </div>
 
+          {/* Call to Action */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -149,9 +157,11 @@ const Projects = () => {
             viewport={{ once: true }}
             className="text-center mt-12"
           >
-            <p className="text-gray-400 mb-4">
-              All testing activities shown here are performed in authorized environments with ethical and legal boundaries.
+            <p className="text-sm text-gray-500 max-w-3xl mx-auto mb-4">
+              All testing and validation activities are conducted in authorized labs or approved environments
+              with an ethical and responsible disclosure approach.
             </p>
+            <p className="text-gray-400 mb-4">Interested in more projects?</p>
             <a
               href="https://github.com/adinathgorakhdubile"
               target="_blank"

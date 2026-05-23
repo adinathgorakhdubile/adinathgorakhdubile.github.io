@@ -5,7 +5,7 @@ const Footer = () => {
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/adinathgorakhdubile', label: 'GitHub' },
-    { icon: Mail, href: 'mailto:adinathgorakhdubile@gmail.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:adinath@example.com', label: 'Email' },
   ];
 
   const quickLinks = [
@@ -24,10 +24,12 @@ const Footer = () => {
     <footer className="bg-dark-bg border-t border-gray-800 py-12 px-4">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
+          {/* Brand */}
           <div>
             <h3 className="text-2xl font-bold glow-text mb-4">Adinath Dubile</h3>
             <p className="text-gray-400 mb-4">
-              Multi-disciplinary cybersecurity portfolio spanning analyst work, penetration testing, DFIR, and legal-aware security practice.
+              Multi-track cybersecurity profile spanning analyst workflows, penetration testing, DFIR-focused
+              studies, and security governance awareness.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
@@ -45,9 +47,10 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold text-cyber-blue mb-4">Quick Links</h4>
-            <ul className="grid grid-cols-2 gap-y-2 gap-x-4 text-sm">
+            <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a
@@ -61,8 +64,9 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Resources */}
           <div>
-            <h4 className="text-lg font-semibold text-cyber-cyan mb-4">Resume Downloads</h4>
+            <h4 className="text-lg font-semibold text-cyber-cyan mb-4">Resources</h4>
             <ul className="space-y-2">
               <li>
                 <a
@@ -70,7 +74,7 @@ const Footer = () => {
                   download
                   className="text-gray-400 hover:text-cyber-green transition-colors duration-300"
                 >
-                  Resume (Analyst-Focused)
+                  Analyst Resume
                 </a>
               </li>
               <li>
@@ -79,7 +83,7 @@ const Footer = () => {
                   download
                   className="text-gray-400 hover:text-cyber-green transition-colors duration-300"
                 >
-                  Resume (Offensive-Focused)
+                  Offensive Resume
                 </a>
               </li>
               <li>
@@ -96,6 +100,7 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Bottom Bar */}
         <div className="pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-400 text-sm text-center md:text-left">

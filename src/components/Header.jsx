@@ -28,7 +28,7 @@ const Header = () => {
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/adinathgorakhdubile', label: 'GitHub' },
-    { icon: Mail, href: 'mailto:adinathgorakhdubile@gmail.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:adinath@example.com', label: 'Email' },
   ];
 
   return (
@@ -41,24 +41,27 @@ const Header = () => {
       }`}
     >
       <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
           <a href="#home" className="text-2xl font-bold glow-text">
             AD
           </a>
 
-          <div className="hidden md:flex items-center gap-5 text-sm">
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-5">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="text-gray-300 hover:text-cyber-blue transition-colors duration-300"
+                className="text-sm text-gray-300 hover:text-cyber-blue transition-colors duration-300"
               >
                 {link.name}
               </a>
             ))}
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Social Links */}
+          <div className="hidden lg:flex items-center space-x-4">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
@@ -73,23 +76,25 @@ const Header = () => {
             ))}
           </div>
 
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-gray-300 hover:text-cyber-blue transition-colors"
+            className="lg:hidden text-gray-300 hover:text-cyber-blue transition-colors"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden mt-4 pb-4 border-t border-gray-700 pt-4"
+            className="lg:hidden mt-4 pb-4 border-t border-gray-700 pt-4"
           >
-            <div className="grid grid-cols-2 gap-3 text-sm">
+            <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -100,20 +105,20 @@ const Header = () => {
                   {link.name}
                 </a>
               ))}
-            </div>
-            <div className="flex space-x-4 pt-4 mt-4 border-t border-gray-700">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-cyber-blue transition-colors duration-300"
-                  aria-label={social.label}
-                >
-                  <social.icon size={20} />
-                </a>
-              ))}
+              <div className="flex space-x-4 pt-4 border-t border-gray-700">
+                {socialLinks.map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-cyber-blue transition-colors duration-300"
+                    aria-label={social.label}
+                  >
+                    <social.icon size={20} />
+                  </a>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}

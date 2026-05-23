@@ -7,7 +7,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Publications from './components/Publications';
-import ResumeSection from './components/ResumeSection';
+import Resume from './components/Resume';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -18,7 +18,7 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError() {
+  static getDerivedStateFromError(error) {
     return { hasError: true };
   }
 
@@ -61,7 +61,7 @@ function App() {
           <Projects />
           <Certifications />
           <Publications />
-          <ResumeSection />
+          <Resume />
           <Contact />
         </main>
         <Footer />
