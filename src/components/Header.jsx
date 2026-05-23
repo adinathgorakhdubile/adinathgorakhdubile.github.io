@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Github, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Header = () => {
@@ -18,13 +18,17 @@ const Header = () => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Certifications', href: '#certifications' },
+    { name: 'Publications', href: '#publications' },
+    { name: 'Resume', href: '#resume' },
     { name: 'Contact', href: '#contact' },
   ];
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/adinathgorakhdubile', label: 'GitHub' },
-    { icon: Mail, href: 'mailto:adinath@example.com', label: 'Email' },
+    { icon: Mail, href: 'mailto:adinathgorakhdubile@gmail.com', label: 'Email' },
   ];
 
   return (
@@ -37,14 +41,12 @@ const Header = () => {
       }`}
     >
       <nav className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
+        <div className="flex items-center justify-between gap-4">
           <a href="#home" className="text-2xl font-bold glow-text">
             AD
           </a>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center gap-5 text-sm">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -56,7 +58,6 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Social Links */}
           <div className="hidden md:flex items-center space-x-4">
             {socialLinks.map((social) => (
               <a
@@ -72,7 +73,6 @@ const Header = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden text-gray-300 hover:text-cyber-blue transition-colors"
@@ -82,7 +82,6 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -90,7 +89,7 @@ const Header = () => {
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden mt-4 pb-4 border-t border-gray-700 pt-4"
           >
-            <div className="flex flex-col space-y-4">
+            <div className="grid grid-cols-2 gap-3 text-sm">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
@@ -101,20 +100,20 @@ const Header = () => {
                   {link.name}
                 </a>
               ))}
-              <div className="flex space-x-4 pt-4 border-t border-gray-700">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-cyber-blue transition-colors duration-300"
-                    aria-label={social.label}
-                  >
-                    <social.icon size={20} />
-                  </a>
-                ))}
-              </div>
+            </div>
+            <div className="flex space-x-4 pt-4 mt-4 border-t border-gray-700">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-cyber-blue transition-colors duration-300"
+                  aria-label={social.label}
+                >
+                  <social.icon size={20} />
+                </a>
+              ))}
             </div>
           </motion.div>
         )}

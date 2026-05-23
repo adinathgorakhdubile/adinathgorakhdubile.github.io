@@ -3,7 +3,11 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
+import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Certifications from './components/Certifications';
+import Publications from './components/Publications';
+import ResumeSection from './components/ResumeSection';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -14,7 +18,7 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -53,7 +57,11 @@ function App() {
           <Hero />
           <About />
           <Skills />
+          <Experience />
           <Projects />
+          <Certifications />
+          <Publications />
+          <ResumeSection />
           <Contact />
         </main>
         <Footer />
@@ -63,4 +71,3 @@ function App() {
 }
 
 export default App;
-

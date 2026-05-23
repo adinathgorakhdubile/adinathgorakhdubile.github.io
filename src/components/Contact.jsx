@@ -9,70 +9,66 @@ const Contact = () => {
     subject: '',
     message: '',
   });
-  
+
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
     }
-    
+
     if (!formData.subject.trim()) {
       newErrors.subject = 'Subject is required';
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Message must be at least 10 characters';
     }
-    
+
     return newErrors;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error for this field when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus({ type: '', message: '' });
-    
+
     const newErrors = validateForm();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    
+
     setIsSubmitting(true);
-    
-    // NOTE: This is a demo implementation that simulates form submission.
-    // In production, replace this with actual backend API call (e.g., FormSpree, EmailJS, or custom API)
-    // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       setStatus({
         type: 'success',
         message: 'Thank you for your message! I will get back to you soon.',
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
       setErrors({});
-    } catch (error) {
+    } catch {
       setStatus({
         type: 'error',
         message: 'Something went wrong. Please try again or contact me directly via email.',
@@ -92,13 +88,12 @@ const Contact = () => {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto"
         >
-          <h2 className="section-title text-center mb-4">Get In Touch</h2>
+          <h2 className="section-title text-center mb-4">Contact</h2>
           <p className="text-center text-gray-400 mb-12">
-            Have a project in mind or want to discuss security services? Let's connect!
+            Open to cybersecurity analyst, information security, penetration testing, DFIR, and legal-aware security opportunities.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -113,8 +108,8 @@ const Contact = () => {
                     <Mail className="text-cyber-cyan mt-1" size={20} />
                     <div>
                       <p className="text-sm text-gray-400">Email</p>
-                      <a href="mailto:adinath@example.com" className="text-white hover:text-cyber-blue transition-colors">
-                        adinath@example.com
+                      <a href="mailto:adinathgorakhdubile@gmail.com" className="text-white hover:text-cyber-blue transition-colors">
+                        adinathgorakhdubile@gmail.com
                       </a>
                     </div>
                   </div>
@@ -122,22 +117,21 @@ const Contact = () => {
                     <MapPin className="text-cyber-cyan mt-1" size={20} />
                     <div>
                       <p className="text-sm text-gray-400">Location</p>
-                      <p className="text-white">Available for Remote Work</p>
+                      <p className="text-white">Pune, Maharashtra (Open to Remote & Hybrid roles)</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="card bg-gradient-to-br from-cyber-blue/10 to-cyber-cyan/10 border-cyber-blue/30">
-                <h4 className="text-lg font-semibold text-cyber-blue mb-2">Availability</h4>
+                <h4 className="text-lg font-semibold text-cyber-blue mb-2">Professional Scope</h4>
                 <p className="text-gray-300">
-                  I'm currently available for freelance penetration testing projects and security consulting. 
-                  Feel free to reach out for collaborations or security assessments.
+                  Available for cybersecurity assessments, analyst support, and security-focused collaborations.
+                  Engagements are conducted only with explicit authorization and ethical boundaries.
                 </p>
               </div>
             </motion.div>
 
-            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}

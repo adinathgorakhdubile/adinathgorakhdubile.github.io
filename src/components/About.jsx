@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion';
-import { Shield, Code, Network, Bug, Terminal, Zap } from 'lucide-react';
+import { Shield, Scale, Search, Network, Bug, Code, Zap } from 'lucide-react';
 
 const About = () => {
-  const skills = [
-    { icon: Shield, name: 'Web Application Penetration Testing', color: 'text-cyber-blue' },
-    { icon: Network, name: 'API Security Assessment', color: 'text-cyber-cyan' },
-    { icon: Network, name: 'Network Penetration Testing', color: 'text-cyber-blue' },
-    { icon: Bug, name: 'Vulnerability Assessment & Management', color: 'text-cyber-green' },
-    { icon: Terminal, name: 'Red Team Enumeration', color: 'text-cyber-cyan' },
-    { icon: Code, name: 'Python Automation & Scripting', color: 'text-cyber-blue' },
-    { icon: Zap, name: 'Security Tool Development', color: 'text-cyber-green' },
+  const strengths = [
+    { icon: Shield, name: 'Web, API, and Network Security Assessments', color: 'text-cyber-blue' },
+    { icon: Search, name: 'Reconnaissance Automation (ReconX)', color: 'text-cyber-cyan' },
+    { icon: Bug, name: 'Vulnerability Validation in Lab Environments', color: 'text-cyber-green' },
+    { icon: Network, name: 'OSINT and Enumeration Workflows', color: 'text-cyber-blue' },
+    { icon: Code, name: 'Python and Bash for Security Automation', color: 'text-cyber-cyan' },
+    { icon: Scale, name: 'Cyber & Computer Forensics with Related Law', color: 'text-cyber-green' },
+    { icon: Zap, name: 'Alignment with ISO 27001, NIST, and GDPR Concepts', color: 'text-cyber-blue' },
   ];
 
   return (
@@ -20,9 +20,9 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
+          className="max-w-5xl mx-auto"
         >
-          <h2 className="section-title text-center mb-12">About Me</h2>
+          <h2 className="section-title text-center mb-12">About</h2>
 
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <motion.div
@@ -32,17 +32,15 @@ const About = () => {
               viewport={{ once: true }}
               className="card"
             >
-              <h3 className="text-2xl font-bold text-cyber-blue mb-4">Professional Background</h3>
+              <h3 className="text-2xl font-bold text-cyber-blue mb-4">Professional Profile</h3>
               <p className="text-gray-300 leading-relaxed">
-                As a dedicated Penetration Tester and VAPT Engineer, I specialize in identifying and 
-                exploiting security vulnerabilities to help organizations strengthen their security posture. 
-                With extensive experience in offensive security, I conduct comprehensive security assessments 
-                across web applications, APIs, and network infrastructure.
+                I am a cybersecurity practitioner building across analyst, assessment, and investigative tracks.
+                My work includes penetration testing in structured lab environments, API and web vulnerability
+                analysis, and practical tool-driven security workflows.
               </p>
               <p className="text-gray-300 leading-relaxed mt-4">
-                My approach combines manual testing techniques with automated tools to provide thorough 
-                security evaluations. I stay current with the latest attack vectors and security trends 
-                to deliver cutting-edge penetration testing services.
+                I am currently pursuing M.Sc. PGD in Cyber & Computer Forensics and Related Law, which supports
+                a balanced perspective across technical security, evidence handling, and legal awareness.
               </p>
             </motion.div>
 
@@ -53,51 +51,47 @@ const About = () => {
               viewport={{ once: true }}
               className="card"
             >
-              <h3 className="text-2xl font-bold text-cyber-cyan mb-4">Expertise Areas</h3>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                I bring a comprehensive skill set to every engagement:
-              </p>
-              <ul className="space-y-2 text-gray-300">
+              <h3 className="text-2xl font-bold text-cyber-cyan mb-4">Operating Principles</h3>
+              <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start">
                   <span className="text-cyber-blue mr-2">▸</span>
-                  <span>Deep understanding of OWASP Top 10 vulnerabilities</span>
+                  <span>Authorized testing only, with clear scope and approvals.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-cyber-blue mr-2">▸</span>
-                  <span>Proficient in security frameworks and methodologies</span>
+                  <span>Responsible disclosure and professional communication.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-cyber-blue mr-2">▸</span>
-                  <span>Experience with various penetration testing tools</span>
+                  <span>Privacy-aware handling of sensitive information and evidence.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="text-cyber-blue mr-2">▸</span>
-                  <span>Custom exploit and tool development capabilities</span>
+                  <span>Conservative reporting aligned to verifiable findings.</span>
                 </li>
               </ul>
             </motion.div>
           </div>
 
-          {/* Key Skills Grid */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-3xl font-bold text-center mb-8 text-cyber-green">Key Skills</h3>
+            <h3 className="text-3xl font-bold text-center mb-8 text-cyber-green">Core Strengths</h3>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {skills.map((skill, index) => (
+              {strengths.map((strength, index) => (
                 <motion.div
-                  key={skill.name}
+                  key={strength.name}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.1 * index, duration: 0.3 }}
                   viewport={{ once: true }}
                   className="card flex items-center gap-4 hover:scale-105"
                 >
-                  <skill.icon className={`${skill.color} flex-shrink-0`} size={28} />
-                  <span className="text-sm font-medium text-gray-200">{skill.name}</span>
+                  <strength.icon className={`${strength.color} flex-shrink-0`} size={28} />
+                  <span className="text-sm font-medium text-gray-200">{strength.name}</span>
                 </motion.div>
               ))}
             </div>
