@@ -268,18 +268,6 @@
       </footer>
     </div>
 
-    <!-- Direct Production Loader: Immediately mounts the compiled React SPA on GitHub Pages -->
-    <script type="module">
-      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      if (!isLocal) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.crossOrigin = '';
-        link.href = '/assets/index-CbqzSTQX.css';
-        document.head.appendChild(link);
-        import('/assets/index-DD769h1N.js');
-      }
-    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
