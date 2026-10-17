@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, ShieldCheck, Heart } from 'lucide-react';
+import { Github, Linkedin, Mail, ShieldCheck } from 'lucide-react';
 import { useDomainTheme } from '../context/useDomainTheme';
 
 const Footer = () => {
@@ -24,20 +24,19 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Role Tracks', href: '#role-switcher' },
+    { name: 'Service Tracks', href: '#role-switcher' },
     { name: 'Skills & Tools', href: '#skills' },
-    { name: 'Projects & Case Studies', href: '#projects' },
+    { name: 'Case Studies', href: '#projects' },
     { name: 'Credentials', href: '#certifications' },
-    { name: 'Experience & Education', href: '#experience' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Publications', href: '#publications' },
     { name: 'Resume Hub', href: '#resume' },
-    { name: 'Contact & Hire', href: '#contact' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (
-    <footer className="bg-black border-t border-slate-800/90 py-12 px-4 sm:px-6 transition-colors duration-500">
+    <footer className="bg-[#05080F] border-t border-slate-800/90 py-12 px-4 sm:px-6 transition-colors duration-300">
       <div className="container mx-auto max-w-7xl">
         <div className="grid md:grid-cols-4 gap-8 mb-10">
           {/* Col 1: Identity & Brand */}
@@ -68,10 +67,10 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-white/5 border border-slate-800 text-slate-300 hover:text-white transition-colors"
+                  className="p-2 rounded-lg bg-white/5 border border-slate-800 text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
                   aria-label={social.label}
                 >
-                  <social.icon size={18} />
+                  <social.icon size={17} />
                 </a>
               ))}
             </div>
@@ -86,7 +85,7 @@ const Footer = () => {
 
           {/* Col 2: Navigation Links */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: domain.accentHex }}>
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
               Navigation
             </h4>
             <ul className="grid grid-cols-2 gap-y-1.5 text-xs">
@@ -103,21 +102,21 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Col 3: Service Tracks & Resumes */}
+          {/* Col 3: Service Domains & Attached Resumes */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: domain.accentHex }}>
-              Service Tracks &amp; CVs
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-300">
+              Focus Domains
             </h4>
             <ul className="space-y-2 text-xs">
               {Object.values(DOMAINS).map((d) => (
                 <li key={d.id}>
                   <button
                     onClick={() => setActiveDomain(d.id)}
-                    className="text-slate-400 hover:text-white transition-colors flex items-center justify-between w-full text-left group"
+                    className="text-slate-400 hover:text-white transition-colors flex items-center justify-between w-full text-left group cursor-pointer"
                   >
-                    <span className="truncate">{d.shortName}</span>
-                    <span className="text-[10px] font-mono opacity-60 group-hover:opacity-100">
-                      {d.themeName}
+                    <span className="truncate group-hover:text-white">{d.name}</span>
+                    <span className="text-[11px] font-mono opacity-50 group-hover:opacity-100">
+                      View
                     </span>
                   </button>
                 </li>
@@ -127,7 +126,7 @@ const Footer = () => {
               <a
                 href={domain.resume.path}
                 download={domain.resume.filename}
-                className="text-xs font-bold hover:underline inline-flex items-center gap-1"
+                className="text-xs font-semibold hover:underline inline-flex items-center gap-1.5 transition-colors"
                 style={{ color: domain.accentHex }}
               >
                 <span>Download {domain.resume.tag} (PDF)</span>
@@ -136,13 +135,13 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright & Geo Meta */}
-        <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400 font-mono">
+        {/* Bottom Bar: Clean Copyright & Geo Location */}
+        <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 font-mono">
           <p className="text-center sm:text-left">
             &copy; {currentYear} Adinath Gorakh Dubile. All rights reserved. • Maharashtra, India
           </p>
-          <p className="flex items-center gap-1.5 text-center sm:text-right">
-            Active Theme: <span style={{ color: domain.accentHex }}>{domain.themeName}</span>
+          <p className="text-center sm:text-right text-slate-400">
+            Adherence to OWASP, ISO/IEC 27001 &amp; NIST Guidelines
           </p>
         </div>
       </div>

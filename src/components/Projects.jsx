@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Github, 
-  ExternalLink, 
   ShieldAlert, 
   Lock, 
   Terminal, 
@@ -12,6 +11,7 @@ import {
   ArrowUpRight,
   Code2
 } from 'lucide-react';
+import { useDomainTheme } from '../context/useDomainTheme';
 
 const PROJECTS = [
   {
@@ -20,8 +20,6 @@ const PROJECTS = [
     subtitle: 'Modular Security Scanner & Vulnerability Management Engine',
     category: 'offensive',
     icon: ShieldAlert,
-    color: 'text-cyber-blue',
-    borderColor: 'border-cyber-blue/30',
     tags: ['Vulnerability Management', 'Python', 'Security APIs', 'GRC Alignment'],
     problemStatement:
       'Manual vulnerability identification across fragmented endpoints creates inconsistent reporting, delayed risk prioritization, and poor traceability between discovered flaws and remediation actions.',
@@ -43,8 +41,6 @@ const PROJECTS = [
     subtitle: 'API Security Testing Workflow (BOLA, IDOR, OAuth & JWT)',
     category: 'offensive',
     icon: Lock,
-    color: 'text-cyber-cyan',
-    borderColor: 'border-cyber-cyan/30',
     tags: ['API Security (VAPT)', 'OWASP API Top 10', 'OAuth / JWT', 'Python'],
     problemStatement:
       'Modern microservice APIs frequently expose authorization flaws such as Broken Object Level Authorization (BOLA) and insecure JWT validation that standard web network scanners fail to detect.',
@@ -66,8 +62,6 @@ const PROJECTS = [
     subtitle: 'Automated Reconnaissance & Attack-Surface Profiling CLI',
     category: 'tooling',
     icon: Terminal,
-    color: 'text-emerald-400',
-    borderColor: 'border-emerald-500/30',
     tags: ['Recon Automation', 'Python / Bash', 'DNS & OSINT', 'Attack Surface'],
     problemStatement:
       'Information gathering and attack-surface mapping during authorized engagements is labor-intensive when running multiple disparate command-line enumeration tools sequentially.',
@@ -89,8 +83,6 @@ const PROJECTS = [
     subtitle: 'Evidence Handling, Chain of Custody & Security Framework Mapping',
     category: 'grc',
     icon: FileCheck2,
-    color: 'text-cyber-indigo',
-    borderColor: 'border-cyber-indigo/30',
     tags: ['DFIR', 'ISO 27001', 'NIST CSF', 'GDPR', 'Cyber Law'],
     problemStatement:
       'Technical security analysts frequently fail to understand the legal admissibility of digital evidence and how technical incidents directly impact regulatory compliance audits and corporate liability.',
@@ -117,16 +109,20 @@ const CATEGORIES = [
 
 const Projects = () => {
   const [filter, setFilter] = useState('all');
+  const { domain } = useDomainTheme();
 
   const filteredProjects = filter === 'all'
     ? PROJECTS
     : PROJECTS.filter((p) => p.category === filter);
 
   return (
-    <section id="projects" aria-labelledby="projects-heading" className="py-20 px-4 sm:px-6 relative bg-obsidian-card/30">
+    <section id="projects" aria-labelledby="projects-heading" className="py-20 px-4 sm:px-6 relative transition-colors duration-300">
       <div className="container mx-auto max-w-7xl">
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <p className="text-xs font-mono uppercase tracking-widest text-cyber-blue font-semibold mb-2">
+          <p
+            className="text-xs font-mono uppercase tracking-widest font-semibold mb-2"
+            style={{ color: domain.accentHex }}
+          >
             Verified Security Toolkits &amp; Research
           </p>
           <h2 id="projects-heading" className="section-title">
@@ -140,19 +136,25 @@ const Projects = () => {
 
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setFilter(cat.id)}
-              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer ${
-                filter === cat.id
-                  ? 'bg-cyber-blue text-slate-950 font-bold shadow-md shadow-cyber-blue/20'
-                  : 'bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
+          {CATEGORIES.map((cat) => {
+            const isSelected = filter === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setFilter(cat.id)}
+                className="px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer"
+                style={{
+                  backgroundColor: isSelected ? domain.accentHex : 'rgba(15, 23, 42, 0.8)',
+                  color: isSelected ? '#070B14' : '#CBD5E1',
+                  border: `1px solid ${isSelected ? domain.accentHex : 'rgba(51, 65, 85, 0.8)'}`,
+                  boxShadow: isSelected ? `0 4px 14px 0 rgba(${domain.accentRgb}, 0.35)` : 'none',
+                  fontWeight: isSelected ? '700' : '600',
+                }}
+              >
+                {cat.label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Project Case Study Cards */}
@@ -166,13 +168,16 @@ const Projects = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.35, delay: index * 0.08 }}
-                className={`card card-hover border ${project.borderColor} bg-slate-900/60 p-6 flex flex-col justify-between`}
+                className="card card-hover p-6 flex flex-col justify-between"
               >
                 <div className="space-y-4">
                   {/* Header: Icon, Title & GitHub Link */}
                   <div className="flex items-start justify-between gap-3 border-b border-slate-800/80 pb-4">
                     <div className="flex items-center gap-3">
-                      <div className={`p-2.5 rounded-xl bg-slate-950 border border-slate-800 ${project.color}`}>
+                      <div
+                        className="p-2.5 rounded-xl bg-black/60 border border-slate-800"
+                        style={{ color: domain.accentHex }}
+                      >
                         <project.icon size={26} />
                       </div>
                       <div>
@@ -189,7 +194,7 @@ const Projects = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 text-slate-400 hover:text-cyber-blue hover:bg-slate-800 rounded-lg transition-colors shrink-0"
+                      className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors shrink-0"
                       aria-label={`View ${project.title} source code on GitHub`}
                     >
                       <Github size={20} />
@@ -207,17 +212,20 @@ const Projects = () => {
 
                   {/* Problem & Methodology Block */}
                   <div className="space-y-3 text-xs leading-relaxed pt-1">
-                    <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800/90 space-y-1">
-                      <span className="font-mono text-cyber-blue font-semibold uppercase tracking-wider text-[10px] flex items-center gap-1.5">
+                    <div className="p-3 rounded-lg bg-black/50 border border-slate-800 space-y-1">
+                      <span
+                        className="font-mono font-semibold uppercase tracking-wider text-[10px] flex items-center gap-1.5"
+                        style={{ color: domain.accentHex }}
+                      >
                         <AlertTriangle size={12} className="text-amber-400" />
                         Security Problem Statement:
                       </span>
                       <p className="text-slate-300">{project.problemStatement}</p>
                     </div>
 
-                    <div className="p-3 rounded-lg bg-slate-950/80 border border-slate-800/90 space-y-1">
-                      <span className="font-mono text-cyber-green font-semibold uppercase tracking-wider text-[10px] flex items-center gap-1.5">
-                        <Code2 size={12} className="text-cyber-green" />
+                    <div className="p-3 rounded-lg bg-black/50 border border-slate-800 space-y-1">
+                      <span className="font-mono text-emerald-400 font-semibold uppercase tracking-wider text-[10px] flex items-center gap-1.5">
+                        <Code2 size={12} className="text-emerald-400" />
                         Engineering Methodology:
                       </span>
                       <p className="text-slate-300">{project.methodology}</p>
@@ -232,7 +240,7 @@ const Projects = () => {
                     <ul className="space-y-1.5 text-xs text-slate-300">
                       {project.highlights.map((h, i) => (
                         <li key={i} className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-cyber-green shrink-0 mt-0.5" />
+                          <CheckCircle2 size={14} style={{ color: domain.accentHex }} className="shrink-0 mt-0.5" />
                           <span>{h}</span>
                         </li>
                       ))}
@@ -246,7 +254,7 @@ const Projects = () => {
                     {project.technologies.map((t) => (
                       <span
                         key={t}
-                        className="px-2 py-0.5 rounded bg-slate-950 border border-slate-800 text-[11px] font-mono text-slate-400"
+                        className="px-2 py-0.5 rounded bg-black/60 border border-slate-800 text-[11px] font-mono text-slate-400"
                       >
                         {t}
                       </span>
@@ -257,7 +265,8 @@ const Projects = () => {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-semibold text-cyber-blue hover:text-white inline-flex items-center gap-1 group shrink-0"
+                    className="text-xs font-semibold hover:underline inline-flex items-center gap-1 group shrink-0"
+                    style={{ color: domain.accentHex }}
                   >
                     <span>{project.actionLabel}</span>
                     <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -269,7 +278,7 @@ const Projects = () => {
         </div>
 
         {/* Ethical Standards Footer Note */}
-        <div className="mt-12 text-center text-xs text-slate-500 font-mono max-w-2xl mx-auto">
+        <div className="mt-12 text-center text-xs text-slate-400 font-mono max-w-2xl mx-auto">
           All projects, testing workflows, and tools are built and evaluated exclusively in authorized environments
           (DVWA, OWASP Juice Shop, bWAPP, TryHackMe) under ethical hacking principles and responsible disclosure guidelines.
         </div>

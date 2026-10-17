@@ -8,11 +8,10 @@ import {
   FlaskConical, 
   ClipboardCheck, 
   Scale, 
-  Terminal, 
   CheckCircle2, 
   Cpu, 
-  Layers 
 } from 'lucide-react';
+import { useDomainTheme } from '../context/useDomainTheme';
 
 const SKILL_DOMAINS = [
   {
@@ -20,8 +19,6 @@ const SKILL_DOMAINS = [
     category: 'defensive',
     title: 'Security Operations (SOC)',
     icon: Shield,
-    color: 'text-cyber-blue',
-    border: 'border-cyber-blue/30',
     summary: 'Foundational capabilities in real-time alert triage, security telemetry analysis, and event log correlation.',
     skills: [
       { name: 'Security Event Review', level: 'Practical' },
@@ -36,8 +33,6 @@ const SKILL_DOMAINS = [
     category: 'defensive',
     title: 'Incident Response (IR)',
     icon: Search,
-    color: 'text-cyber-cyan',
-    border: 'border-cyber-cyan/30',
     summary: 'Structured containment, incident scoping, root-cause investigation drills, and executive post-mortem reporting.',
     skills: [
       { name: 'Incident Triage Procedures', level: 'Core' },
@@ -52,8 +47,6 @@ const SKILL_DOMAINS = [
     category: 'offensive',
     title: 'Threat Intelligence & OSINT',
     icon: Radar,
-    color: 'text-emerald-400',
-    border: 'border-emerald-500/30',
     summary: 'Passive & active reconnaissance, adversary infrastructure discovery, and attack surface profiling.',
     skills: [
       { name: 'OSINT Reconnaissance', level: 'Advanced' },
@@ -68,8 +61,6 @@ const SKILL_DOMAINS = [
     category: 'offensive',
     title: 'Penetration Testing (VAPT)',
     icon: Lock,
-    color: 'text-cyber-blue',
-    border: 'border-cyber-blue/30',
     summary: 'Authorized vulnerability discovery, exploitation mechanics, token verification, and remediation advisory.',
     skills: [
       { name: 'Burp Suite Professional / Community', level: 'Advanced' },
@@ -85,8 +76,6 @@ const SKILL_DOMAINS = [
     category: 'grc-law',
     title: 'Digital Forensics (DFIR)',
     icon: FlaskConical,
-    color: 'text-cyber-indigo',
-    border: 'border-cyber-indigo/30',
     summary: 'Academic and hands-on grounding in forensic acquisition, disk/memory artifacts, and verifiable custody records.',
     skills: [
       { name: 'Digital Evidence Fundamentals', level: 'Advanced' },
@@ -101,8 +90,6 @@ const SKILL_DOMAINS = [
     category: 'grc-law',
     title: 'Governance, Risk & Compliance',
     icon: ClipboardCheck,
-    color: 'text-cyber-green',
-    border: 'border-cyber-green/30',
     summary: 'Evaluating organizational security maturity, building risk registers, and aligning policies with global standards.',
     skills: [
       { name: 'ISO/IEC 27001 Controls Alignment', level: 'Practical' },
@@ -117,8 +104,6 @@ const SKILL_DOMAINS = [
     category: 'grc-law',
     title: 'Cyber Law & Legal Compliance',
     icon: Scale,
-    color: 'text-cyber-indigo',
-    border: 'border-cyber-indigo/30',
     summary: 'Legal admissibility of digital proof, IT Act provisions, privacy laws, and responsible disclosure protocols.',
     skills: [
       { name: 'Cyber & Computer Forensics Law', level: 'Postgraduate' },
@@ -130,7 +115,7 @@ const SKILL_DOMAINS = [
 ];
 
 const FILTERS = [
-  { id: 'all', label: 'All 7 Domains' },
+  { id: 'all', label: 'All 7 Disciplines' },
   { id: 'offensive', label: 'Offensive & VAPT' },
   { id: 'defensive', label: 'Defensive (SOC & IR)' },
   { id: 'grc-law', label: 'GRC, DFIR & Cyber Law' },
@@ -138,16 +123,20 @@ const FILTERS = [
 
 const Skills = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const { domain } = useDomainTheme();
 
   const filteredDomains = activeFilter === 'all'
     ? SKILL_DOMAINS
     : SKILL_DOMAINS.filter((d) => d.category === activeFilter);
 
   return (
-    <section id="skills" aria-labelledby="skills-heading" className="py-20 px-4 sm:px-6 relative">
+    <section id="skills" aria-labelledby="skills-heading" className="py-20 px-4 sm:px-6 relative transition-colors duration-300">
       <div className="container mx-auto max-w-7xl">
         <div className="max-w-3xl mx-auto text-center mb-10">
-          <p className="text-xs font-mono uppercase tracking-widest text-cyber-blue font-semibold mb-2">
+          <p
+            className="text-xs font-mono uppercase tracking-widest font-semibold mb-2"
+            style={{ color: domain.accentHex }}
+          >
             Multi-Disciplinary Technical Matrix
           </p>
           <h2 id="skills-heading" className="section-title">
@@ -161,53 +150,62 @@ const Skills = () => {
 
         {/* Filter Pills */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {FILTERS.map((f) => (
-            <button
-              key={f.id}
-              onClick={() => setActiveFilter(f.id)}
-              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer ${
-                activeFilter === f.id
-                  ? 'bg-cyber-blue text-slate-950 shadow-md shadow-cyber-blue/20'
-                  : 'bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-slate-700'
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
+          {FILTERS.map((f) => {
+            const isSelected = activeFilter === f.id;
+            return (
+              <button
+                key={f.id}
+                onClick={() => setActiveFilter(f.id)}
+                className="px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 cursor-pointer"
+                style={{
+                  backgroundColor: isSelected ? domain.accentHex : 'rgba(15, 23, 42, 0.8)',
+                  color: isSelected ? '#070B14' : '#CBD5E1',
+                  border: `1px solid ${isSelected ? domain.accentHex : 'rgba(51, 65, 85, 0.8)'}`,
+                  boxShadow: isSelected ? `0 4px 14px 0 rgba(${domain.accentRgb}, 0.35)` : 'none',
+                  fontWeight: isSelected ? '700' : '600',
+                }}
+              >
+                {f.label}
+              </button>
+            );
+          })}
         </div>
 
-        {/* 7 Domains Grid */}
+        {/* 7 Disciplines Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           <AnimatePresence mode="popLayout">
-            {filteredDomains.map((domain, index) => (
+            {filteredDomains.map((item, index) => (
               <motion.div
-                key={domain.id}
+                key={item.id}
                 layout
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.25, delay: index * 0.05 }}
-                className={`card card-hover flex flex-col justify-between border ${domain.border} bg-slate-900/60`}
+                className="card card-hover flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2.5">
-                      <div className={`p-2 rounded-lg bg-slate-950 border border-slate-800 ${domain.color}`}>
-                        <domain.icon size={20} />
+                      <div
+                        className="p-2 rounded-lg bg-black/60 border border-slate-800"
+                        style={{ color: domain.accentHex }}
+                      >
+                        <item.icon size={20} />
                       </div>
-                      <h3 className="text-base font-bold text-white">{domain.title}</h3>
+                      <h3 className="text-base font-bold text-white">{item.title}</h3>
                     </div>
                   </div>
 
                   <p className="text-xs text-slate-400 mb-4 leading-relaxed">
-                    {domain.summary}
+                    {item.summary}
                   </p>
 
                   <div className="space-y-1.5">
-                    {domain.skills.map((skill) => (
+                    {item.skills.map((skill) => (
                       <div
                         key={skill.name}
-                        className="flex items-center justify-between p-1.5 px-2.5 rounded bg-slate-950/70 border border-slate-800/80 text-xs"
+                        className="flex items-center justify-between p-1.5 px-2.5 rounded bg-black/50 border border-slate-800 text-xs hover:border-slate-700 transition-colors"
                       >
                         <span className="text-slate-200 font-medium">{skill.name}</span>
                         <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-slate-900 text-slate-400 border border-slate-800">
@@ -231,38 +229,38 @@ const Skills = () => {
         >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-800 pb-4 mb-4">
             <div className="flex items-center gap-2">
-              <Cpu className="text-cyber-blue" size={20} />
+              <Cpu size={20} style={{ color: domain.accentHex }} />
               <h3 className="text-sm font-bold text-white uppercase tracking-wider font-mono">
                 Applied Practice &amp; Lab Validation Telemetry
               </h3>
             </div>
-            <span className="text-xs font-mono text-cyber-green flex items-center gap-1.5">
+            <span className="text-xs font-mono flex items-center gap-1.5" style={{ color: domain.accentHex }}>
               <CheckCircle2 size={13} />
               100% Authorized Environments Only
             </span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-            <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-              <div className="text-2xl font-extrabold text-cyber-blue mb-1">30+</div>
+            <div className="p-3 rounded-lg bg-black/40 border border-slate-800">
+              <div className="text-2xl font-extrabold mb-1" style={{ color: domain.accentHex }}>30+</div>
               <p className="text-xs font-semibold text-slate-200">Security Labs Completed</p>
               <p className="text-[11px] text-slate-400 font-mono mt-0.5">DVWA, Juice Shop, bWAPP</p>
             </div>
 
-            <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-              <div className="text-2xl font-extrabold text-cyber-cyan mb-1">TryHackMe</div>
+            <div className="p-3 rounded-lg bg-black/40 border border-slate-800">
+              <div className="text-2xl font-extrabold mb-1 text-white">TryHackMe</div>
               <p className="text-xs font-semibold text-slate-200">Learning Path Achiever</p>
               <p className="text-[11px] text-slate-400 font-mono mt-0.5">Offensive &amp; Network Rooms</p>
             </div>
 
-            <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-              <div className="text-2xl font-extrabold text-cyber-green mb-1">API &amp; Web</div>
+            <div className="p-3 rounded-lg bg-black/40 border border-slate-800">
+              <div className="text-2xl font-extrabold mb-1" style={{ color: domain.accentHex }}>API &amp; Web</div>
               <p className="text-xs font-semibold text-slate-200">Auth &amp; Abuse Validation</p>
               <p className="text-[11px] text-slate-400 font-mono mt-0.5">BOLA, IDOR, Token Security</p>
             </div>
 
-            <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-              <div className="text-2xl font-extrabold text-cyber-indigo mb-1">Automation</div>
+            <div className="p-3 rounded-lg bg-black/40 border border-slate-800">
+              <div className="text-2xl font-extrabold mb-1 text-white">Automation</div>
               <p className="text-xs font-semibold text-slate-200">Python &amp; Bash Tooling</p>
               <p className="text-[11px] text-slate-400 font-mono mt-0.5">ReconX &amp; VulnX Scanners</p>
             </div>

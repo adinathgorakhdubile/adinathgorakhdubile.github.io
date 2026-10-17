@@ -50,10 +50,6 @@ const Hero = () => {
             <MapPin size={13} style={{ color: domain.accentHex }} />
             <span>Maharashtra, India • Available for Remote &amp; Hybrid Engagements</span>
           </div>
-
-          <div className="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 border border-slate-800/80 text-[11px] font-mono text-slate-400">
-            <span>Theme: {domain.themeName}</span>
-          </div>
         </motion.div>
 
         {/* Main Grid: Left Value Proposition & Right Bento Proof Matrix */}
@@ -89,7 +85,7 @@ const Hero = () => {
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono uppercase tracking-wider text-slate-300 flex items-center gap-1.5 font-semibold">
                   <Layers size={14} style={{ color: domain.accentHex }} />
-                  Select Domain Service &amp; Dynamic Theme:
+                  Select Domain Service &amp; Focus Track:
                 </span>
                 <span className="text-[11px] font-mono text-slate-400 hidden sm:inline">
                   Interactive Evaluation Tracks
@@ -115,7 +111,7 @@ const Hero = () => {
                     }`}
                   >
                     <span>{d.shortName}</span>
-                    <span className="text-[10px] opacity-80 font-normal">{d.themeName}</span>
+                    <span className="text-[10px] opacity-75 font-normal">{d.resume.tag}</span>
                   </button>
                 ))}
               </div>

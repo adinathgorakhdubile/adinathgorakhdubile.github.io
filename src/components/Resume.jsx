@@ -151,7 +151,7 @@ const Resume = () => {
                       : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-slate-800'
                   }`}
                 >
-                  {activeDomain === d.id ? 'Selected Service' : `Select & Activate Theme`}
+                  {activeDomain === d.id ? 'Active Service Track' : `Select ${d.shortName}`}
                 </button>
               </div>
             </motion.div>
