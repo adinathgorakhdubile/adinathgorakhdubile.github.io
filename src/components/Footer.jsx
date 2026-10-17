@@ -1,8 +1,9 @@
 import { Github, Linkedin, Mail, ShieldCheck, Heart } from 'lucide-react';
-import { RESUME_TRACKS } from '../data/resumes';
+import { useDomainTheme } from '../context/useDomainTheme';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { domain, DOMAINS, setActiveDomain } = useDomainTheme();
 
   const socialLinks = [
     { 
@@ -36,14 +37,17 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-obsidian border-t border-slate-800/90 py-12 px-4 sm:px-6">
+    <footer className="bg-black border-t border-slate-800/90 py-12 px-4 sm:px-6 transition-colors duration-500">
       <div className="container mx-auto max-w-7xl">
         <div className="grid md:grid-cols-4 gap-8 mb-10">
           {/* Col 1: Identity & Brand */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyber-blue to-cyber-green p-[1px]">
-                <div className="w-full h-full rounded-lg bg-obsidian flex items-center justify-center font-mono font-bold text-xs text-cyber-blue">
+              <div
+                className="w-8 h-8 rounded-lg p-[1.5px]"
+                style={{ background: `linear-gradient(135deg, ${domain.accentHex}, #FFFFFF)` }}
+              >
+                <div className="w-full h-full rounded-[6px] bg-[#070B14] flex items-center justify-center font-mono font-bold text-xs text-white">
                   AD
                 </div>
               </div>
@@ -54,7 +58,7 @@ const Footer = () => {
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-md">
               Cybersecurity Researcher based in Maharashtra, India. Specializing in Web &amp; API Penetration Testing (VAPT),
-              Governance, Risk &amp; Compliance (ISO 27001, NIST CSF, GDPR), Information Security, and Digital Forensics.
+              Information Security analysis, and Governance, Risk &amp; Compliance (ISO 27001, NIST CSF, GDPR, DFIR).
             </p>
 
             <div className="flex items-center gap-2 pt-1">
@@ -64,7 +68,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-cyber-blue hover:border-cyber-blue/50 transition-colors"
+                  className="p-2 rounded-lg bg-white/5 border border-slate-800 text-slate-300 hover:text-white transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon size={18} />
@@ -74,23 +78,23 @@ const Footer = () => {
 
             <div className="pt-1">
               <span className="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
-                <ShieldCheck size={13} className="text-cyber-green" />
-                Ethical Practice • 100% Authorized Validation Only
+                <ShieldCheck size={13} style={{ color: domain.accentHex }} />
+                Ethical Practice • 100% Authorized Security Testing Only
               </span>
             </div>
           </div>
 
           {/* Col 2: Navigation Links */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-cyber-blue">
-              Site Navigation
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: domain.accentHex }}>
+              Navigation
             </h4>
             <ul className="grid grid-cols-2 gap-y-1.5 text-xs">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-slate-400 hover:text-slate-200 transition-colors"
+                    className="text-slate-400 hover:text-white transition-colors"
                   >
                     {link.name}
                   </a>
@@ -99,30 +103,35 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Col 3: Direct Resume Connector Links */}
+          {/* Col 3: Service Tracks & Resumes */}
           <div className="space-y-3">
-            <h4 className="text-xs font-mono font-bold uppercase tracking-wider text-cyber-green">
-              Resume Artifacts
+            <h4 className="text-xs font-mono font-bold uppercase tracking-wider" style={{ color: domain.accentHex }}>
+              Service Tracks &amp; CVs
             </h4>
             <ul className="space-y-2 text-xs">
-              {RESUME_TRACKS.map((track) => (
-                <li key={track.id}>
-                  <a
-                    href={track.path}
-                    download={track.filename}
-                    className="text-slate-400 hover:text-cyber-cyan transition-colors flex items-center justify-between group"
-                    title={`Download ${track.title}`}
+              {Object.values(DOMAINS).map((d) => (
+                <li key={d.id}>
+                  <button
+                    onClick={() => setActiveDomain(d.id)}
+                    className="text-slate-400 hover:text-white transition-colors flex items-center justify-between w-full text-left group"
                   >
-                    <span className="truncate">{track.title}</span>
-                    <span className="text-[10px] font-mono text-slate-400 group-hover:text-cyber-cyan">PDF ↓</span>
-                  </a>
+                    <span className="truncate">{d.shortName}</span>
+                    <span className="text-[10px] font-mono opacity-60 group-hover:opacity-100">
+                      {d.themeName}
+                    </span>
+                  </button>
                 </li>
               ))}
             </ul>
-            <div className="pt-2">
-              <p className="text-[11px] font-mono text-slate-400">
-                Connected to folder: <code className="text-cyber-cyan">public/resumes/</code>
-              </p>
+            <div className="pt-2 border-t border-slate-800">
+              <a
+                href={domain.resume.path}
+                download={domain.resume.filename}
+                className="text-xs font-bold hover:underline inline-flex items-center gap-1"
+                style={{ color: domain.accentHex }}
+              >
+                <span>Download {domain.resume.tag} (PDF)</span>
+              </a>
             </div>
           </div>
         </div>
@@ -133,7 +142,7 @@ const Footer = () => {
             &copy; {currentYear} Adinath Gorakh Dubile. All rights reserved. • Maharashtra, India
           </p>
           <p className="flex items-center gap-1.5 text-center sm:text-right">
-            Built with React &amp; Tailwind CSS • Hosted on GitHub Pages
+            Active Theme: <span style={{ color: domain.accentHex }}>{domain.themeName}</span>
           </p>
         </div>
       </div>

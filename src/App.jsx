@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { DomainThemeProvider } from './context/DomainThemeContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -18,7 +19,7 @@ class ErrorBoundary extends Component {
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
@@ -29,13 +30,13 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center bg-dark-navy text-white">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold mb-4 text-cyber-blue">Oops! Something went wrong.</h2>
-            <p className="text-gray-400 mb-4">Please refresh the page to try again.</p>
+        <div className="min-h-screen flex items-center justify-center bg-[#070B14] text-white p-6">
+          <div className="text-center max-w-md p-8 rounded-2xl bg-slate-900 border border-slate-800">
+            <h2 className="text-3xl font-bold mb-3 text-sky-400">Oops! Something went wrong.</h2>
+            <p className="text-slate-400 mb-6 text-sm">Please refresh the page to reload the interface.</p>
             <button
               onClick={() => window.location.reload()}
-              className="cyber-button"
+              className="px-5 py-2.5 bg-sky-500 text-slate-950 font-bold rounded-lg hover:bg-sky-400 transition-colors"
             >
               Refresh Page
             </button>
@@ -51,21 +52,23 @@ class ErrorBoundary extends Component {
 function App() {
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-dark-navy text-white">
-        <Header />
-        <main>
-          <Hero />
-          <About />
-          <Skills />
-          <Experience />
-          <Projects />
-          <Certifications />
-          <Publications />
-          <Resume />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      <DomainThemeProvider>
+        <div className="min-h-screen text-white selection:bg-white/20 selection:text-white transition-colors duration-500">
+          <Header />
+          <main>
+            <Hero />
+            <About />
+            <Skills />
+            <Projects />
+            <Certifications />
+            <Experience />
+            <Publications />
+            <Resume />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </DomainThemeProvider>
     </ErrorBoundary>
   );
 }

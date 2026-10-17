@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Planning and IDE workflow docs
+antigravity_ide_prompt_2_step_by_step_workflow.md
+portfolio_audit_seo_and_redesign_plan.md
