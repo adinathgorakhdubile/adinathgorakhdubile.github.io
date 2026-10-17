@@ -31,7 +31,7 @@ class ErrorBoundary extends Component {
       return (
         <div className="min-h-screen flex items-center justify-center bg-dark-navy text-white">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4 text-cyber-blue">Oops! Something went wrong.</h1>
+            <h2 className="text-4xl font-bold mb-4 text-cyber-blue">Oops! Something went wrong.</h2>
             <p className="text-gray-400 mb-4">Please refresh the page to try again.</p>
             <button
               onClick={() => window.location.reload()}

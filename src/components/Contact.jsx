@@ -1,11 +1,25 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { 
+  Mail, 
+  MapPin, 
+  Send, 
+  CheckCircle2, 
+  AlertCircle, 
+  Linkedin, 
+  Github, 
+  ShieldCheck, 
+  FileCheck2,
+  Briefcase,
+  Copy,
+  Check
+} from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    roleOrScope: 'fulltime-hiring',
     subject: '',
     message: '',
   });
@@ -13,28 +27,39 @@ const Contact = () => {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ type: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const contactEmail = 'adinathdubile@zohomail.in';
+  const linkedinUrl = 'https://www.linkedin.com/in/adinath-dubile';
+  const githubUrl = 'https://github.com/adinathgorakhdubile';
+
+  const copyEmailToClipboard = () => {
+    navigator.clipboard.writeText(contactEmail);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
+  };
 
   const validateForm = () => {
     const newErrors = {};
     
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = 'Please provide your name or organization.';
     }
     
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'Please provide a valid contact email.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+      newErrors.email = 'Please enter a valid email address.';
     }
     
     if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
+      newErrors.subject = 'Subject is required.';
     }
     
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = 'Please include details of your inquiry or requirements.';
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
+      newErrors.message = 'Message must be at least 10 characters.';
     }
     
     return newErrors;
@@ -42,10 +67,9 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    // Clear error for this field when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: '' }));
     }
   };
 
@@ -61,21 +85,27 @@ const Contact = () => {
     
     setIsSubmitting(true);
     
-    // NOTE: This is a demo implementation that simulates form submission.
-    // In production, replace this with actual backend API call (e.g., FormSpree, EmailJS, or custom API)
-    // Example: await fetch('/api/contact', { method: 'POST', body: JSON.stringify(formData) })
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Simulate submission & create mailto fallback
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      
+      const mailtoSubject = encodeURIComponent(`[${formData.roleOrScope}] ${formData.subject}`);
+      const mailtoBody = encodeURIComponent(
+        `From: ${formData.name} (${formData.email})\nRole/Engagement: ${formData.roleOrScope}\n\nMessage:\n${formData.message}`
+      );
+      
+      window.location.href = `mailto:${contactEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
+      
       setStatus({
         type: 'success',
-        message: 'Thank you for your message! I will get back to you soon.',
+        message: 'Thank you! Your email client has been prepared. You can also reach out directly at adinathdubile@zohomail.in.',
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ name: '', email: '', roleOrScope: 'fulltime-hiring', subject: '', message: '' });
       setErrors({});
-    } catch (error) {
+    } catch {
       setStatus({
         type: 'error',
-        message: 'Something went wrong. Please try again or contact me directly via email.',
+        message: 'Could not launch email handler. Please email directly at adinathdubile@zohomail.in.',
       });
     } finally {
       setIsSubmitting(false);
@@ -83,71 +113,142 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 relative">
-      <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto"
-        >
-          <h2 className="section-title text-center mb-4">Get In Touch</h2>
-          <p className="text-center text-gray-400 mb-12">
-            Open to opportunities in cybersecurity analyst, information security, penetration testing, DFIR, and related security law tracks.
+    <section
+      id="contact"
+      aria-labelledby="contact-heading"
+      className="py-20 px-4 sm:px-6 relative bg-obsidian-surface/40 border-t border-slate-800/80"
+    >
+      <div className="container mx-auto max-w-7xl">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <p className="text-xs font-mono uppercase tracking-widest text-cyber-blue font-semibold mb-2">
+            Initiate Communication
           </p>
+          <h2 id="contact-heading" className="section-title">
+            Contact &amp; Engagement
+          </h2>
+          <p className="section-subtitle">
+            Open to full-time cybersecurity positions and authorized freelance engagements across Penetration Testing (VAPT),
+            GRC framework alignment, and Information Security analysis.
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <div className="card">
-                <h3 className="text-2xl font-bold text-cyber-blue mb-4">Contact Information</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <Mail className="text-cyber-cyan mt-1" size={20} />
-                    <div>
-                      <p className="text-sm text-gray-400">Email</p>
-                      <a href="mailto:adinath@example.com" className="text-white hover:text-cyber-blue transition-colors">
-                        adinath@example.com
-                      </a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <MapPin className="text-cyber-cyan mt-1" size={20} />
-                    <div>
-                      <p className="text-sm text-gray-400">Location</p>
-                      <p className="text-white">Available for Remote Work</p>
-                    </div>
+        <div className="grid lg:grid-cols-12 gap-8 max-w-6xl mx-auto">
+          {/* Left Column: Direct Info & Social Channels */}
+          <motion.div
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4 }}
+            className="lg:col-span-5 space-y-5"
+          >
+            {/* Primary Contact Card */}
+            <div className="card border-slate-800 bg-slate-900/60 p-6 space-y-4">
+              <h3 className="text-base font-bold text-white uppercase tracking-wider font-mono flex items-center gap-2">
+                <ShieldCheck size={18} className="text-cyber-blue" />
+                Verified Contact Channels
+              </h3>
+
+              {/* Live Email Box with Copy */}
+              <div className="p-3.5 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
+                <span className="text-[11px] font-mono text-slate-400 block">Direct Email</span>
+                <div className="flex items-center justify-between gap-2">
+                  <a
+                    href={`mailto:${contactEmail}`}
+                    className="text-sm font-semibold text-white hover:text-cyber-blue transition-colors truncate"
+                  >
+                    {contactEmail}
+                  </a>
+                  <button
+                    onClick={copyEmailToClipboard}
+                    className="p-1.5 rounded-md hover:bg-slate-800 text-slate-400 hover:text-white transition-colors shrink-0"
+                    title="Copy email to clipboard"
+                    aria-label="Copy email address"
+                  >
+                    {copiedEmail ? <Check size={16} className="text-cyber-green" /> : <Copy size={16} />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Location Badge */}
+              <div className="p-3.5 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
+                <span className="text-[11px] font-mono text-slate-400 block">Location &amp; Availability</span>
+                <div className="flex items-start gap-2 text-xs text-slate-200">
+                  <MapPin size={16} className="text-cyber-cyan shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-semibold text-white">Maharashtra, India</p>
+                    <p className="text-slate-400 text-[11px] mt-0.5">
+                      Available for Remote Worldwide • Hybrid / On-Site across Maharashtra &amp; India
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div className="card bg-gradient-to-br from-cyber-blue/10 to-cyber-cyan/10 border-cyber-blue/30">
-                <h4 className="text-lg font-semibold text-cyber-blue mb-2">Availability</h4>
-                <p className="text-gray-300">
-                  Available for full-time and internship roles across SOC, information security analysis,
-                  penetration testing, and forensic/legal-aligned cybersecurity functions.
-                </p>
-              </div>
-            </motion.div>
+              {/* Profiles */}
+              <div className="grid grid-cols-2 gap-2 pt-1">
+                <a
+                  href={linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-lg bg-slate-950 border border-slate-800 hover:border-cyber-blue/50 flex items-center gap-2 text-xs text-slate-300 hover:text-white transition-all"
+                  aria-label="LinkedIn Profile of Adinath Dubile"
+                >
+                  <Linkedin size={18} className="text-cyber-blue shrink-0" />
+                  <span className="truncate">LinkedIn Profile</span>
+                </a>
 
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-              viewport={{ once: true }}
-            >
-              <form onSubmit={handleSubmit} className="card space-y-4">
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-lg bg-slate-950 border border-slate-800 hover:border-cyber-blue/50 flex items-center gap-2 text-xs text-slate-300 hover:text-white transition-all"
+                  aria-label="GitHub Profile of Adinath Gorakh Dubile"
+                >
+                  <Github size={18} className="text-cyber-cyan shrink-0" />
+                  <span className="truncate">GitHub Repos</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Engagement Scopes */}
+            <div className="card border-slate-800/80 bg-slate-950/70 p-5 space-y-3">
+              <h4 className="text-xs font-mono uppercase tracking-wider text-slate-300 font-bold flex items-center gap-2">
+                <Briefcase size={14} className="text-cyber-green" />
+                Active Hiring &amp; Engagement Tracks
+              </h4>
+              <ul className="space-y-2 text-xs text-slate-300">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 size={13} className="text-cyber-green shrink-0 mt-0.5" />
+                  <span><strong>Full-Time Roles:</strong> VAPT Engineer, InfoSec Analyst, GRC Associate, SOC Triage.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 size={13} className="text-cyber-green shrink-0 mt-0.5" />
+                  <span><strong>Freelance VAPT:</strong> Web application &amp; API security testing with developer remediation debriefs.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 size={13} className="text-cyber-green shrink-0 mt-0.5" />
+                  <span><strong>GRC Advisory:</strong> ISO 27001 control gap assessments, NIST CSF mapping, and risk registers.</span>
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Interactive Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className="lg:col-span-7"
+          >
+            <form onSubmit={handleSubmit} className="card border-slate-800 bg-slate-900/60 p-6 space-y-4">
+              <h3 className="text-base font-bold text-white uppercase tracking-wider font-mono mb-2">
+                Send a Message or Engagement Scoping Inquiry
+              </h3>
+
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                    Name *
+                  <label htmlFor="name" className="block text-xs font-mono text-slate-300 mb-1.5">
+                    Your Name or Organization *
                   </label>
                   <input
                     type="text"
@@ -155,21 +256,21 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2 bg-gray-900 border ${
-                      errors.name ? 'border-red-500' : 'border-gray-700'
-                    } rounded-lg text-white focus:outline-none focus:border-cyber-blue transition-colors`}
-                    placeholder="Your Name"
+                    className={`w-full px-3.5 py-2.5 bg-slate-950 border ${
+                      errors.name ? 'border-red-500' : 'border-slate-800'
+                    } rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyber-blue transition-colors`}
+                    placeholder="e.g. Jane Doe / Cyber Tech Corp"
                   />
                   {errors.name && (
-                    <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
-                      <AlertCircle size={14} /> {errors.name}
+                    <p className="mt-1 text-xs text-red-400 flex items-center gap-1 font-mono">
+                      <AlertCircle size={12} /> {errors.name}
                     </p>
                   )}
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                    Email *
+                  <label htmlFor="email" className="block text-xs font-mono text-slate-300 mb-1.5">
+                    Your Work or Contact Email *
                   </label>
                   <input
                     type="email"
@@ -177,21 +278,42 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2 bg-gray-900 border ${
-                      errors.email ? 'border-red-500' : 'border-gray-700'
-                    } rounded-lg text-white focus:outline-none focus:border-cyber-blue transition-colors`}
-                    placeholder="your.email@example.com"
+                    className={`w-full px-3.5 py-2.5 bg-slate-950 border ${
+                      errors.email ? 'border-red-500' : 'border-slate-800'
+                    } rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyber-blue transition-colors`}
+                    placeholder="e.g. j.doe@company.com"
                   />
                   {errors.email && (
-                    <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
-                      <AlertCircle size={14} /> {errors.email}
+                    <p className="mt-1 text-xs text-red-400 flex items-center gap-1 font-mono">
+                      <AlertCircle size={12} /> {errors.email}
                     </p>
                   )}
                 </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="roleOrScope" className="block text-xs font-mono text-slate-300 mb-1.5">
+                    Inquiry Intent *
+                  </label>
+                  <select
+                    id="roleOrScope"
+                    name="roleOrScope"
+                    value={formData.roleOrScope}
+                    onChange={handleChange}
+                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-lg text-sm text-white focus:outline-none focus:border-cyber-blue transition-colors"
+                  >
+                    <option value="fulltime-hiring">Full-Time Hiring / Recruiter Outreach</option>
+                    <option value="freelance-vapt">Freelance Web / API VAPT Engagement</option>
+                    <option value="grc-compliance">GRC / ISO 27001 / Risk Assessment</option>
+                    <option value="academic-research">Academic Collaboration / Forensics</option>
+                    <option value="general-inquiry">General Technical Inquiry</option>
+                  </select>
+                </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                    Subject *
+                  <label htmlFor="subject" className="block text-xs font-mono text-slate-300 mb-1.5">
+                    Subject Line *
                   </label>
                   <input
                     type="text"
@@ -199,74 +321,71 @@ const Contact = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2 bg-gray-900 border ${
-                      errors.subject ? 'border-red-500' : 'border-gray-700'
-                    } rounded-lg text-white focus:outline-none focus:border-cyber-blue transition-colors`}
-                    placeholder="Subject"
+                    className={`w-full px-3.5 py-2.5 bg-slate-950 border ${
+                      errors.subject ? 'border-red-500' : 'border-slate-800'
+                    } rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyber-blue transition-colors`}
+                    placeholder="e.g. VAPT Opportunity / Scoping Discussion"
                   />
                   {errors.subject && (
-                    <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
-                      <AlertCircle size={14} /> {errors.subject}
+                    <p className="mt-1 text-xs text-red-400 flex items-center gap-1 font-mono">
+                      <AlertCircle size={12} /> {errors.subject}
                     </p>
                   )}
                 </div>
+              </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                    Message *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={5}
-                    className={`w-full px-4 py-2 bg-gray-900 border ${
-                      errors.message ? 'border-red-500' : 'border-gray-700'
-                    } rounded-lg text-white focus:outline-none focus:border-cyber-blue transition-colors resize-none`}
-                    placeholder="Your message..."
-                  />
-                  {errors.message && (
-                    <p className="mt-1 text-sm text-red-500 flex items-center gap-1">
-                      <AlertCircle size={14} /> {errors.message}
-                    </p>
-                  )}
-                </div>
-
-                {status.message && (
-                  <div
-                    className={`p-4 rounded-lg flex items-center gap-2 ${
-                      status.type === 'success'
-                        ? 'bg-green-500/10 border border-green-500/50 text-green-500'
-                        : 'bg-red-500/10 border border-red-500/50 text-red-500'
-                    }`}
-                  >
-                    {status.type === 'success' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
-                    <p className="text-sm">{status.message}</p>
-                  </div>
+              <div>
+                <label htmlFor="message" className="block text-xs font-mono text-slate-300 mb-1.5">
+                  Message / Scope Details *
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  className={`w-full px-3.5 py-2.5 bg-slate-950 border ${
+                    errors.message ? 'border-red-500' : 'border-slate-800'
+                  } rounded-lg text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyber-blue transition-colors resize-none`}
+                  placeholder="Share details regarding the role, target scope, timeline, or objectives..."
+                />
+                {errors.message && (
+                  <p className="mt-1 text-xs text-red-400 flex items-center gap-1 font-mono">
+                    <AlertCircle size={12} /> {errors.message}
+                  </p>
                 )}
+              </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full cyber-button disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              {status.message && (
+                <div
+                  className={`p-3 rounded-lg flex items-center gap-2 text-xs ${
+                    status.type === 'success'
+                      ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400'
+                      : 'bg-red-500/10 border border-red-500/30 text-red-400'
+                  }`}
                 >
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-t-transparent border-dark-navy rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send size={20} />
-                      Send Message
-                    </>
-                  )}
-                </button>
-              </form>
-            </motion.div>
-          </div>
-        </motion.div>
+                  {status.type === 'success' ? <CheckCircle2 size={16} /> : <AlertCircle size={16} />}
+                  <p>{status.message}</p>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full cyber-button py-3 text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <span>Preparing Email...</span>
+                ) : (
+                  <>
+                    <Send size={16} />
+                    <span>Send Message to adinathdubile@zohomail.in</span>
+                  </>
+                )}
+              </button>
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
