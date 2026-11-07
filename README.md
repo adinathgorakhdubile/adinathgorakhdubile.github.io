@@ -136,7 +136,7 @@ The site automatically deploys to GitHub Pages when you push to the `main` branc
 
 ## 🤝 Contact
 
-- **Email**: adinath@example.com
+- **Email**: adinathdubile1@gmail.com
 - **GitHub**: [@adinathgorakhdubile](https://github.com/adinathgorakhdubile)
 
 ---
